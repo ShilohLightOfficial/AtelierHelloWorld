@@ -1,51 +1,61 @@
 
 
 
-var bubble = {};
+var circles = [];
 
 function setup(){
 
 	createCanvas(500,500);
 	
-	bubble = {
 
-		x:width/2,
-		y:height/2
-	}
+	
 }
 
 
 function draw(){
 
+	noStroke();
 	background(255,255,255,100);
 
+	for (var i = 0;i < circles.length; i ++){
 
-		
-	ellipse(bubble.x,bubble.y,50,50);
+		fill (circles[i].x, 150 , circles[i].y, 255 - circles[i].lifetime);
 
-	bubble.xspeed = random(-3,3);
-	bubble.yspeed = random(-3,3);
-	bubble.x += bubble.xspeed;
-	bubble.y += bubble.yspeed;
+		ellipse(circles[i].x,circles[i].y,50,50);
+
+		circles[i].x += circles[i].xspeed;
+		circles[i].y += circles[i].yspeed;
+
+		circles[i].lifetime += 4;
+
+
+		if (circles[i].y >= height - 25 && circles[i].yspeed > 2){
+			circles[i].yspeed *= -0.75;
+		}
+
+		if (circles[i].y >= height -25 && circles[i].yspeed < 2){
+
+			//circles[i].yspeed = 0;
+
+		} else {
+
+			circles[i].yspeed += circles[i].y/100;
+		}
+	}
 }
 
-function mouseClicked(){
+function mouseDragged(){
 
 	var circle = {
 
-		x: random(width),
-		y: random (height),
-		c: 255,
-		xspeed: 0,
-		yspeed: 0
+		x: mouseX,
+		y: mouseY,
+		xspeed: 0.1,
+		yspeed: -4,
+		lifetime: 0
 
 	}
 
-		if (dist(bubble.x, bubble.y, mouseX,mouseY) < 25){
 
-			fill(0);
-			console.log("tes");
-		}
-	
-
+	circles.push(circle);
 }
