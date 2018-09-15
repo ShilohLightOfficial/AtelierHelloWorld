@@ -29,7 +29,9 @@ function draw(){
 			circles.push (circle);
 
 			fill(i * 30+ 100, time /2,  j * 30);
-			circle = ellipse( (j * 30) + (width/2 - 75), (i * 30) + (height/2 -75), circles[i +j].size, circles[i+j].size);
+			
+			rectMode(CENTER);
+			circle = rect( (j * 30) + (width/2 - 75), (i * 30) + (height/2 -75), circles[i +j].size, circles[i+j].size, 20 * sin(time/20) + 20);
 
 			
 		}
