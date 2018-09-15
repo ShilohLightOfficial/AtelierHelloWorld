@@ -14,7 +14,7 @@ function draw(){
 
 		noStroke();
 
-    	fill(y, x, map(mouseX,0,1000,0,255));
+    	fill(y + -mouseY, x - 250, map(mouseX,0,1000,0,255));
 
     	ellipse(x,y,10,10);
     }

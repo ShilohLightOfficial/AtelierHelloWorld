@@ -1,16 +1,11 @@
 
-
-
 var circles = [];
 
 function setup(){
 
 	createCanvas(500,500);
 	
-
-	
 }
-
 
 function draw(){
 
@@ -19,7 +14,7 @@ function draw(){
 
 	for (var i = 0;i < circles.length; i ++){
 
-		fill (circles[i].x, 150 , circles[i].y, 255 - circles[i].lifetime);
+		fill (circles[i].x, circles[i].y, 150, 255 - circles[i].lifetime);
 
 		ellipse(circles[i].x,circles[i].y,50,50);
 
@@ -42,6 +37,21 @@ function draw(){
 			circles[i].yspeed += circles[i].y/100;
 		}
 	}
+}
+function mouseClicked(){
+
+	var circle = {
+
+		x: mouseX,
+		y: mouseY,
+		xspeed: 0.1,
+		yspeed: -4,
+		lifetime: 0
+
+	}
+
+
+	circles.push(circle);
 }
 
 function mouseDragged(){

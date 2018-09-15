@@ -1,6 +1,6 @@
 
 
-var mouseClicks = [];
+var circles = [];
 
 function setup(){
 
@@ -14,35 +14,40 @@ function draw(){
 
 	background (255,255,255,100);
 
-	for (var i = 0; i <mouseClicks.length; i++){
+	for (var i = 0; i <circles.length; i++){
 
+		if (circles[i].x < mouseX){
 
-
-		if (mouseClicks[i].x < mouseX){
-
-			mouseClicks[i].xspeed += 0.02 * (mouseX - mouseClicks[i].x) / 1000;
+			if (circles[i].xspeed < 1.2){
+			circles[i].xspeed += (circles[i].x - mouseX)/-10000;
+			}else {
+				circles[i].xspeed -= 0.1;
+			}
 
 		} else{
-
-			mouseClicks[i].xspeed += -0.02 * (mouseX - mouseClicks[i].x) / -1000;
+			if (circles[i].xspeed < 1.2){
+			circles[i].xspeed += (circles[i].x - mouseX)/-10000;
+			} else {
+				circles[i].xspeed -= 0.1;
+			}
 		}
 
-		if (mouseClicks[i].y < mouseY){
+		if (circles[i].y < mouseY){
 
-			mouseClicks[i].yspeed += -0.02;
+			circles[i].yspeed += (circles[i].y - mouseY)/10000;
 
 		} else{
 			
-			mouseClicks[i].yspeed += 0.02;
+			circles[i].yspeed += (circles[i].y - mouseY)/10000;
 		}
 
-		mouseClicks[i].x += mouseClicks[i].xspeed;
-		mouseClicks[i].y -= mouseClicks[i].yspeed;
-		mouseClicks[i].c += 1;
+		circles[i].x += circles[i].xspeed;
+		circles[i].y -= circles[i].yspeed;
+		circles[i].c += 1;
 
-		fill(mouseClicks[i].x, mouseClicks[i].y, 150);
+		fill(circles[i].x, circles[i].y, 150);
 
-		ellipse (mouseClicks[i].x, mouseClicks[i].y, mouseClicks[i].size, mouseClicks[i].size,);
+		ellipse (circles[i].x, circles[i].y, circles[i].size, circles[i].size,);
 	}
 
 
@@ -52,19 +57,16 @@ function draw(){
 
 function addParticle(){
 
-	var clickPosition = {
+	var circle = {
 		x:random(width), 
 		y:random(height), 
 		size: 10,  
 		xspeed: 0,
 		yspeed: 0
-
-
-
 	};
 
 
-	mouseClicks.push(clickPosition);
+	circles.push(circle);
 
 	
 
